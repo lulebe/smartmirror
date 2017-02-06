@@ -11,7 +11,8 @@ module.exports = (function () {
 
   const returns = {
     loadSettings, getSettings, setSettings,
-    renderButtons, showVoiceOverlay
+    renderButtons, showVoiceOverlay, openWindow,
+    renderHomescreen, hideWindow
   }
 
   //DOM nodes
@@ -64,7 +65,7 @@ module.exports = (function () {
         return
       }
       speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
-      screen.setTimeout(settings.sleepTimer)
+      screen.init(settings.sleepTimer, hideWindow, renderHomescreen)
       loadModules()
       cb(null)
     })
@@ -82,7 +83,7 @@ module.exports = (function () {
         cb(null)
         settings = newSettings
         speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
-        screen.setTimeout(settings.sleepTimer)
+        screen.init(settings.sleepTimer, hideWindow, renderHomescreen)
         if (reloadModules)
           loadModules()
       }
@@ -212,6 +213,10 @@ module.exports = (function () {
     itemWindow.html('')
     itemWindow.addClass('shown')
     return itemWindow
+  }
+  function hideWindow () {
+    itemWindow.html('')
+    itemWindow.removeClass('shown')
   }
 
   function showVoiceOverlay (open) {
