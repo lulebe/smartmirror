@@ -64,6 +64,7 @@ module.exports = (function () {
         return
       }
       speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
+      screen.setTimeout(settings.sleepTimer)
       loadModules()
       cb(null)
     })

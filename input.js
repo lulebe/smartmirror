@@ -77,46 +77,56 @@ module.exports = function (buttonBar) {
   function initButtonBar () {
     buttonBar.children('#btn0').longpress(function () { // long press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[0].longPress != null)
         listeners[0].longPress()
     }, function () { // short press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[0].press != null)
         listeners[0].press()
     }, 1000)
     buttonBar.children('#btn1').longpress(function () { // long press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[1].longPress != null)
         listeners[1].longPress()
     }, function () { // short press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[1].press != null)
         listeners[1].press()
     }, 1000)
     buttonBar.children('#btn2').longpress(function () { // long press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[2].longPress != null)
         listeners[2].longPress()
     }, function () { // short press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[2].press != null)
         listeners[2].press()
     }, 1000)
     buttonBar.children('#btn3').longpress(function () { // long press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[3].longPress != null)
         listeners[3].longPress()
     }, function () { // short press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[3].press != null)
         listeners[3].press()
     }, 1000)
     buttonBar.children('#btn4').longpress(function () { // long press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[4].longPress != null)
         listeners[4].longPress()
     }, function () { // short press
       if (!enabled) return
+      screen.turnOn()
       if (listeners[4].press != null)
         listeners[4].press()
     }, 1000)

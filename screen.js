@@ -2,15 +2,26 @@ const exec = require('child_process').exec
 
 let screenTimeout = null
 let timeout = 300
+let isOn = true
 
 function turnOff () {
-  exec('xset -display :0.0 dpms force off')
+  if (isOn)
+    exec('/opt/vc/bin/tvservice -o')
+  isOn = false
 }
 function turnOn () {
   if (screenTimeout != null)
     clearTimeout(screenTimeout)
   screenTimeout = setTimeout(turnOff, timeout*1000)
-  exec('xset -display :0.0 dpms force on')
+  if (!isOn)
+    exec('/opt/vc/bin/tvservice -p')
+  isOn = true
+}
+function toggle () {
+  if (isOn)
+    turnOff()
+  else
+    turnOn()
 }
 
 function setScreenTimeout (t) {
@@ -18,4 +29,4 @@ function setScreenTimeout (t) {
   turnOn()
 }
 
-module.exports = { turnOff, turnOn, setTimeout: setScreenTimeout }
+module.exports = { turnOff, turnOn, toggle, setTimeout: setScreenTimeout }
