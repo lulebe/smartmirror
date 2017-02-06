@@ -6,7 +6,7 @@ Computer with internet connection and up to date node(>= v6 LTS)/npm installed.
 
 ## Installation
 
-1. `npm install`
+1. on mac `sh mac_install.sh`, on raspi/ubuntu/debian (needs apt-get) `sh raspi_install.sh`
 2. `npm start`
 
 ## Functionality
