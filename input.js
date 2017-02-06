@@ -3,6 +3,7 @@
 const screen = require('./screen')
 
 module.exports = function (buttonBar) {
+  var enabled = true
   var btn0, btn1, btn2, btn3, btn4
   const listeners = [
     {down: null, up: null, press: null, longPress: null, lastDown: null},
@@ -14,6 +15,7 @@ module.exports = function (buttonBar) {
 
 
   const down = (btn) => {
+    if (!enabled) return
     screen.turnOn()
     buttonBar.children('#btn'+btn).addClass('active')
     if (listeners[btn].down != null)
@@ -22,6 +24,7 @@ module.exports = function (buttonBar) {
   }
 
   const up = (btn) => {
+    if (!enabled) return
     buttonBar.children('#btn'+btn).removeClass('active')
     const l = listeners[btn]
     if (l.up != null)
@@ -73,44 +76,67 @@ module.exports = function (buttonBar) {
 
   function initButtonBar () {
     buttonBar.children('#btn0').longpress(function () { // long press
+      if (!enabled) return
       if (listeners[0].longPress != null)
         listeners[0].longPress()
     }, function () { // short press
+      if (!enabled) return
       if (listeners[0].press != null)
         listeners[0].press()
     }, 1000)
     buttonBar.children('#btn1').longpress(function () { // long press
+      if (!enabled) return
       if (listeners[1].longPress != null)
         listeners[1].longPress()
     }, function () { // short press
+      if (!enabled) return
       if (listeners[1].press != null)
         listeners[1].press()
     }, 1000)
     buttonBar.children('#btn2').longpress(function () { // long press
+      if (!enabled) return
       if (listeners[2].longPress != null)
         listeners[2].longPress()
     }, function () { // short press
+      if (!enabled) return
       if (listeners[2].press != null)
         listeners[2].press()
     }, 1000)
     buttonBar.children('#btn3').longpress(function () { // long press
+      if (!enabled) return
       if (listeners[3].longPress != null)
         listeners[3].longPress()
     }, function () { // short press
+      if (!enabled) return
       if (listeners[3].press != null)
         listeners[3].press()
     }, 1000)
     buttonBar.children('#btn4').longpress(function () { // long press
+      if (!enabled) return
       if (listeners[4].longPress != null)
         listeners[4].longPress()
     }, function () { // short press
+      if (!enabled) return
       if (listeners[4].press != null)
         listeners[4].press()
     }, 1000)
   }
 
+  const enable = e => {
+    enabled = e
+    if (e) return
+    listeners.forEach(l => {
+      l.lastDown = null
+    })
+    buttonBar.children('#btn0').removeClass('active')
+    buttonBar.children('#btn1').removeClass('active')
+    buttonBar.children('#btn2').removeClass('active')
+    buttonBar.children('#btn3').removeClass('active')
+    buttonBar.children('#btn4').removeClass('active')
+  }
+
 
   initButtonBar()
 
-  return {close, setListeners, setPressListener, setLongPressListener}
+  return {close, setListeners, setPressListener, setLongPressListener, enable}
 }

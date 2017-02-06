@@ -9,7 +9,7 @@ let sonusGerman = null
 let sonusEnglish = null
 
 module.exports = {
-  init: function (id, key, voiceOverlay) {
+  init: function (id, key, voiceOverlay, showVoiceOverlay) {
     if (sonusGerman != null || id == null || key == null)
       return
     const speech = Speech({
@@ -17,12 +17,6 @@ module.exports = {
       credentials: key
     })
     const textDisplay = voiceOverlay.children('#voiceinput')
-    const showVoiceOverlay = show => {
-      if (show)
-        voiceOverlay.addClass('shown')
-      else
-        voiceOverlay.removeClass('shown')
-    }
     sonusGerman = Sonus.init({ hotwords: hotwordGerman, language: 'de-DE' }, speech)
     sonusEnglish = Sonus.init({ hotwords: hotwordEnglish, language: 'en-US' }, speech)
     Sonus.start(sonusGerman)
@@ -30,7 +24,7 @@ module.exports = {
     sonusGerman.on('hotword', () => {
       screen.turnOn()
       showVoiceOverlay(true)
-      textDisplay.text('')
+      textDisplay.text('DE')
     })
     sonusGerman.on('partial-result', res => {
       textDisplay.html('<span style="color: #666">'+res+'...</span>')
@@ -41,7 +35,7 @@ module.exports = {
     sonusEnglish.on('hotword', () => {
       screen.turnOn()
       showVoiceOverlay(true)
-      textDisplay.text('')
+      textDisplay.text('EN')
     })
     sonusEnglish.on('partial-result', res => {
       textDisplay.html('<span style="color: #666">'+res+'...</span>')

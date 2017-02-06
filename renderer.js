@@ -63,7 +63,7 @@ module.exports = (function () {
         cb(e)
         return
       }
-      speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay)
+      speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
       loadModules()
       cb(null)
     })
@@ -80,7 +80,7 @@ module.exports = (function () {
       else {
         cb(null)
         settings = newSettings
-        speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay)
+        speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
         screen.setTimeout(settings.sleepTimer)
         if (reloadModules)
           loadModules()
@@ -94,18 +94,29 @@ module.exports = (function () {
     })
   }
 
-
+  const btnImgsInternal = []
+  function renderButtonsInternal (hidden) {
+    if (hidden) {
+      buttonBar.children('#btn0').attr('src', './res/btn-none.png')
+      buttonBar.children('#btn1').attr('src', './res/btn-none.png')
+      buttonBar.children('#btn2').attr('src', './res/btn-none.png')
+      buttonBar.children('#btn3').attr('src', './res/btn-none.png')
+      buttonBar.children('#btn4').attr('src', './res/btn-none.png')
+    } else {
+      buttonBar.children('#btn0').attr('src', btnImgsInternal[0])
+      buttonBar.children('#btn1').attr('src', btnImgsInternal[1])
+      buttonBar.children('#btn2').attr('src', btnImgsInternal[2])
+      buttonBar.children('#btn3').attr('src', btnImgsInternal[3])
+      buttonBar.children('#btn4').attr('src', btnImgsInternal[4])
+    }
+  }
   function renderButtons (btnImgs) {
-    const path0 = path.join(__dirname, btnImgs.home || './res/btn-home.png')
-    const path1 = path.join(__dirname, btnImgs.one || './res/btn-down.png')
-    const path2 = path.join(__dirname, btnImgs.two || './res/btn-up.png')
-    const path3 = path.join(__dirname, btnImgs.three || './res/btn-open.png')
-    const path4 = path.join(__dirname, btnImgs.four || './res/btn-hide.png')
-    buttonBar.children('#btn0').attr('src', path0)
-    buttonBar.children('#btn1').attr('src', path1)
-    buttonBar.children('#btn2').attr('src', path2)
-    buttonBar.children('#btn3').attr('src', path3)
-    buttonBar.children('#btn4').attr('src', path4)
+    btnImgsInternal[0] = path.join(__dirname, btnImgs.home || './res/btn-home.png')
+    btnImgsInternal[1] = path.join(__dirname, btnImgs.one || './res/btn-down.png')
+    btnImgsInternal[2] = path.join(__dirname, btnImgs.two || './res/btn-up.png')
+    btnImgsInternal[3] = path.join(__dirname, btnImgs.three || './res/btn-open.png')
+    btnImgsInternal[4] = path.join(__dirname, btnImgs.four || './res/btn-hide.png')
+    renderButtonsInternal(false)
   }
 
   function toggleSettingsBar () {
@@ -203,10 +214,15 @@ module.exports = (function () {
   }
 
   function showVoiceOverlay (open) {
-    if (open)
+    if (open) {
       voiceOverlay.addClass('shown')
-    else
+      input.enable(false)
+      renderButtonsInternal(true)
+    } else {
       voiceOverlay.removeClass('shown')
+      input.enable(true)
+      renderButtonsInternal(false)
+    }
   }
 
   return returns
