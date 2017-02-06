@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Smartmirror</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="keyboard/style.css">
+  </head>
+  <body>
+    <article id="settings"></article>
+    <header id="status"></header>
+    <article id="center"></article>
+    <article id="window"></article>
+    <article id="voice">
+      <div id="anim">
+        <div class="voiceanim a1"></div>
+        <div class="voiceanim a2"></div>
+        <div class="voiceanim a3"></div>
+        <div class="voiceanim a4"></div>
+        <div class="voiceanim a5"></div>
+      </div>
+      <div id="voiceinput"></div>
+    </article>
+    <footer id="btn-cues">
+      <img src="res/btn-home.png" id="btn0">
+      <img src="res/btn-down.png" id="btn1">
+      <img src="res/btn-up.png" id="btn2">
+      <img src="res/btn-open.png" id="btn3">
+      <img src="res/btn-hide.png" id="btn4">
+    </footer>
+    <script>
+      require('./speech/responsivevoice')
+      setTimeout(function () {
+        responsiveVoice.setDefaultVoice("Deutsch Female")
+      }, 3000)
+      require('./vendor/longpress.jquery.js')
+      const renderer = require('./renderer.js')
+      renderer.loadSettings(() => {})
+      require('./server/http-server')
+    </script>
+  </body>
+</html>

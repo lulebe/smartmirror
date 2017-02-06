@@ -1,0 +1,56 @@
+.kb .input {
+  margin: 50px 0;
+  min-height: 30px;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 24px;
+}
+.kb .keyboard.lowercase {
+  text-transform: lowercase;
+}
+.kb .keyrow {
+  margin-top: -8px;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+.kb .key {
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: sans-serif;
+  font-size: 24px;
+  color: white;
+  will-change: transform;
+  transition: transform 0.2s ease;
+}
+.kb .key.invisible {
+  display: none;
+}
+.kb .key.visible {
+  display: table-cell;
+}
+.kb .key > small {
+  font-size: 50%;
+}
+.kb .key.fn {
+  background: #333;
+  text-transform: uppercase;
+}
+.kb .key.close {
+  border-radius: 50%;
+  color: grey;
+  text-transform: uppercase;
+}
+.kb .key.focus {
+  outline: none;
+  background: white;
+  color: red;
+}
+.kb .key.pressed {
+  transform: scale(1.2)
+}

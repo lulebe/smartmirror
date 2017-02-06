@@ -1,0 +1,32 @@
+{
+  "name": "Smartmirror",
+  "version": "0.0.1",
+  "description": "A remotely controllable smartmirror software",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "LuLeBe",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.9.4"
+  },
+  "devDependencies": {
+    "electron": "1.4.15",
+    "electron-rebuild": "1.5.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dot": "^1.1.1",
+    "download": "^5.0.2",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.9.1",
+    "mdns": "^2.3.3",
+    "wifi-control": "^2.0.0",
+    "@google-cloud/speech": "^0.6.0",
+    "node-record-lpcm16": "^0.2.0",
+    "snowboy": "^1.1.0",
+    "stream": "0.0.2"
+  }
+}
