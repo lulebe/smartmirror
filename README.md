@@ -21,5 +21,4 @@ Computer with internet connection and up to date node(>= v6 LTS)/npm installed.
     rm -rf smartmirror
     git clone https://github.com/lulebe/smartmirror.git
     cd smartmirror
-    npm install
-    npm start
+    sh mac_install.sh|raspi_install.sh
