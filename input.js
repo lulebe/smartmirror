@@ -34,7 +34,7 @@ module.exports = function (buttonBar) {
     const l = listeners[btn]
     if (l.up != null)
       l.up()
-    if (l.lastDown - Date.now() > 1000) {
+    if (Date.now() - l.lastDown > 1000) {
       if (l.longPress != null)
         l.longPress()
     } else {
@@ -45,6 +45,7 @@ module.exports = function (buttonBar) {
   }
 
   const initBtn = (gpio, btn) => {
+    console.log("gpio -> btn", gpio, btn)
     wpi.pinMode(gpio, wpi.INPUT)
     var tout = null
     wpi.wiringPiISR(gpio, wpi.INT_EDGE_BOTH, function (delta) {
@@ -68,6 +69,7 @@ module.exports = function (buttonBar) {
   }
 
   const close = () => {
+    console.log('closing wpi')
     listeners.forEach(l => {
       l.down = null
       l.up = null
@@ -81,6 +83,9 @@ module.exports = function (buttonBar) {
     wpi.wiringPiISRCancel(3)
     wpi.wiringPiISRCancel(4)
   }
+  window.addEventListener('unload', () => {
+    close()
+  })
 
   const setListeners = (btn, onDown, onUp) => {
     listeners[btn].down = onDown
@@ -168,6 +173,7 @@ module.exports = function (buttonBar) {
 
 
   initButtonBar()
+  init()
 
   return {close, setListeners, setPressListener, setLongPressListener, enable}
 }
