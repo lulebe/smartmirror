@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const exec = require('child_process').exec
 
 const screen = require('../screen')
 
@@ -16,4 +17,8 @@ router.get('/screenoff', (req, res) => {
 router.get('/screentoggle', (req, res) => {
   screen.toggle()
   res.status(200).send()
+})
+router.get('/reboot', (req, res) => {
+  res.status(200).send()
+  setTimeout(() => {exec('reboot')}, 700)
 })

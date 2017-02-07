@@ -1,4 +1,9 @@
-//const wpi = require('wiring-pi')
+let wpi
+try {
+  wpi = require('wiring-pi')
+} catch (e) {
+  wpi = {pinMode: () => {}, wiringPiISR: () => {}, wiringPiISRCancel: () => {}}
+}
 
 const screen = require('./screen')
 
@@ -39,16 +44,27 @@ module.exports = function (buttonBar) {
     l.lastDown = null
   }
 
+  const initBtn = (gpio, btn) => {
+    wpi.pinMode(gpio, wpi.INPUT)
+    var tout = null
+    wpi.wiringPiISR(gpio, wpi.INT_EDGE_BOTH, function (delta) {
+      clearTimeout(tout)
+      tout = setTimeout(function () {
+        if (wpi.digitalRead(gpio))
+          down(btn)
+        else
+          up(btn)
+      }, 30)
+    })
+  }
+
   const init = () => {
-    // wpi.setup('gpio')
-    // wpi.pinMode(7, wpi.INPUT);
-    // wpi.pinMode(7, wpi.INPUT);
-    // wpi.pinMode(7, wpi.INPUT);
-    // wpi.pinMode(7, wpi.INPUT);
-    // wpi.pinMode(7, wpi.INPUT);
-    // wpi.wiringPiISR(7, wpi.INT_EDGE_BOTH, function(delta) {
-    //   console.log('Pin 7 changed to LOW (', delta, ')');
-    // });
+    wpi.setup('wpi')
+    initBtn(7, 0)
+    initBtn(0, 1)
+    initBtn(2, 2)
+    initBtn(3, 3)
+    initBtn(4, 4)
   }
 
   const close = () => {
@@ -59,6 +75,11 @@ module.exports = function (buttonBar) {
       l.longpress = null
       l.lastDown = null
     })
+    wpi.wiringPiISRCancel(7)
+    wpi.wiringPiISRCancel(0)
+    wpi.wiringPiISRCancel(2)
+    wpi.wiringPiISRCancel(3)
+    wpi.wiringPiISRCancel(4)
   }
 
   const setListeners = (btn, onDown, onUp) => {
