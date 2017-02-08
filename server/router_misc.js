@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const exec = require('child_process').exec
+const path = require('path');
 
 const screen = require('../screen')
 
@@ -21,4 +22,8 @@ router.get('/screentoggle', (req, res) => {
 router.get('/reboot', (req, res) => {
   res.status(200).send()
   setTimeout(() => {exec('reboot')}, 700)
+})
+router.get('/update', () => {
+  res.status(200).send()
+  exec('sh ' + path.join(__dirname, '../update.sh'))
 })
