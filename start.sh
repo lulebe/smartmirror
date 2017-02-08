@@ -1,3 +1,3 @@
 cd /home/pi/smartmirror
-npm start
+sudo npm start
 sudo python ultrasonic.py
