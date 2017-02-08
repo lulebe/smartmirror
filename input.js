@@ -2,7 +2,7 @@ let wpi
 try {
   wpi = require('wiring-pi')
 } catch (e) {
-  wpi = {pinMode: () => {}, wiringPiISR: () => {}, wiringPiISRCancel: () => {}}
+  wpi = {setup: () => {}, pinMode: () => {}, wiringPiISR: () => {}, wiringPiISRCancel: () => {}}
 }
 
 const screen = require('./screen')

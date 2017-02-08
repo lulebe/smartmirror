@@ -40,6 +40,24 @@ body {
   opacity: 1;
 }
 
+#settings #settings-overview {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#settings #settings-overview img {
+  width: 200px;
+  height: 200px;
+  opacity: 0.4;
+}
+
+#settings #settings-overview img.selected {
+  opacity: 1;
+}
+
 #settings #wifi {
   height: 100%;
   overflow-y: auto;

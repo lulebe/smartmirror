@@ -123,8 +123,6 @@ module.exports = (function () {
 
   function toggleSettingsBar () {
     if (settingsBarOpen) {
-      settingsBarOpen = false
-      settingsBar.removeClass('shown')
       renderHomescreen()
     } else {
       settingsBarOpen = true
@@ -139,6 +137,9 @@ module.exports = (function () {
   }
 
   function renderHomescreen () {
+    settingsBarOpen = false
+    settingsBar.removeClass('shown')
+    settingsBar.html('')
     statusBar.html('')
     feed.html('')
     itemWindow.html('')

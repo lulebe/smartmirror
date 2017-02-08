@@ -1,8 +1,11 @@
 const WiFiControl = require('wifi-control')
+const $ = require('jquery')
 
 WiFiControl.init({debug: true})
 
 module.exports = function (domNode, input, renderButtons, closeSettings) {
+
+  const wifidom = $('<div id="wifi"></div>')
 
   domNode.html('<h1>searching for Networks...</h1>')
 
@@ -10,11 +13,11 @@ module.exports = function (domNode, input, renderButtons, closeSettings) {
   let networks = [];
 
   const selectNetwork = function (index) {
-    domNode.children('.network:nth-child(' + (selected+1) + ')').removeClass('active')
+    wifidom.children('.network:nth-child(' + (selected+1) + ')').removeClass('active')
     selected = index
-    const newNetworkEl = domNode.children('.network:nth-child(' + (selected+1) + ')')
+    const newNetworkEl = wifidom.children('.network:nth-child(' + (selected+1) + ')')
     newNetworkEl.addClass('active')
-    domNode.scrollTop(newNetworkEl.offset().top)
+    wifidom.scrollTop(newNetworkEl.offset().top)
   }
 
   const connect = function (network, pw) {
@@ -64,14 +67,21 @@ module.exports = function (domNode, input, renderButtons, closeSettings) {
     }
     domNode.html('')
     networks = []
+    domNode.html(wifidom)
     for (var i = 0; i < res.networks.length; i++) {
       const network = res.networks[i]
       if (!listContainsSSID(network.ssid)) {
         networks.push(network)
-        domNode.append('<div class="network">' + network.ssid + '</div>')
+        wifidom.append('<div class="network">' + network.ssid + '</div>')
       }
     }
     selectNetwork(0)
+    renderButtons({
+      one: './res/btn-down.png',
+      two: './res/btn-up.png',
+      three: './res/btn-open.png',
+      four: './res/btn-none.png'
+    })
     input.setPressListener(1, tapDown)
     input.setPressListener(2, tapUp)
     input.setPressListener(3, tapSelect)
