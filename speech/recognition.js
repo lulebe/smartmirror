@@ -7,6 +7,8 @@ const hotwordGerman = [{ file: path.join(__dirname, 'hey_spiegel.pmdl'), hotword
 const hotwordEnglish = [{ file: path.join(__dirname, 'hey_mirror.pmdl'), hotword: 'Hey Mirror' }]
 let sonusGerman = null
 let sonusEnglish = null
+let timeoutGerman = null
+let timeoutEnglish = null
 
 module.exports = {
   init: function (id, key, voiceOverlay, showVoiceOverlay) {
@@ -25,23 +27,29 @@ module.exports = {
       screen.turnOn()
       showVoiceOverlay(true)
       textDisplay.text('DE')
+      timeoutGerman = setTimeout(() => {showVoiceOverlay(false)}, 10000)
     })
     sonusGerman.on('partial-result', res => {
       textDisplay.html('<span style="color: #666">'+res+'...</span>')
     })
     sonusGerman.on('final-result', res => {
       textDisplay.text(res)
+      if (timeoutGerman != null)
+        clearTimeout(timeoutGerman)
     })
     sonusEnglish.on('hotword', () => {
       screen.turnOn()
       showVoiceOverlay(true)
       textDisplay.text('EN')
+      timeoutGerman = setTimeout(() => {showVoiceOverlay(false)}, 10000)
     })
     sonusEnglish.on('partial-result', res => {
       textDisplay.html('<span style="color: #666">'+res+'...</span>')
     })
     sonusEnglish.on('final-result', res => {
       textDisplay.text(res)
+      if (timeoutEnglish != null)
+        clearTimeout(timeoutEnglish)
     })
     Sonus.annyang.addCommands({
       'Abbruch (Storno)': () => {showVoiceOverlay(false)},
