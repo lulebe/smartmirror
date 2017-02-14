@@ -1,4 +1,4 @@
-sudo apt-get install libmagic-dev libatlas-base-dev
+sudo apt-get install libmagic-dev libatlas-base-dev sox libsox-fmt-all
 rm -rf node_modules
 export npm_config_target=1.4.15
 export npm_config_disturl=https://atom.io/download/electron
