@@ -61,11 +61,11 @@ module.exports = function (buttonBar) {
 
   const init = () => {
     wpi.setup('wpi')
-    initBtn(7, 0)
-    initBtn(0, 1)
+    initBtn(4, 0)
+    initBtn(3, 1)
     initBtn(2, 2)
-    initBtn(3, 3)
-    initBtn(4, 4)
+    initBtn(0, 3)
+    initBtn(7, 4)
   }
 
   const close = () => {
