@@ -49,7 +49,7 @@ app.on('ready', function () {
     bonjour.start(bonjourServerName)
   })
   createWindow()
-  pyUS = spawn('sh', ['ultrasonic.py'])
+  pyUS = spawn('sudo', ['python', 'ultrasonic.py'])
 })
 
 // Quit when all windows are closed.
