@@ -10,3 +10,7 @@ npm install electron
 rm -rf .electron-gyp
 mkdir modules
 mkdir data
+unset npm_config_target
+unset npm_config_disturl
+unset npm_config_runtime
+unset npm_config_build_from_source
