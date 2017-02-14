@@ -7,11 +7,13 @@ const BrowserWindow = electron.BrowserWindow
 const fs = require('fs')
 const path = require('path')
 const url = require('url')
-const bonjour = require('./server/bonjour');
+const spawn = require('child_process').spawn
+
+const bonjour = require('./server/bonjour')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow, pyUS = null
 
 function createWindow () {
   // Create the browser window.
@@ -47,6 +49,7 @@ app.on('ready', function () {
     bonjour.start(bonjourServerName)
   })
   createWindow()
+  pyUS = spawn('sh', ['ultrasonic.py'])
 })
 
 // Quit when all windows are closed.
@@ -67,6 +70,8 @@ app.on('activate', function () {
 })
 
 app.on('quit', function () {
+  if (pyUS != null)
+    pyUS.kill()
   bonjour.stop()
 })
 
