@@ -128,8 +128,8 @@ Sonus.start = sonus => {
   sonus.mic = record.start({
     threshold: 0,
     device: sonus.device || null,
-    recordProgram: sonus.recordProgram || "rec",
-    verbose: true
+    recordProgram: "rec",
+    verbose: false
   })
 
   sonus.mic.pipe(sonus.detector)
