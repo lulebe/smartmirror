@@ -1,2 +1,2 @@
 cd /home/pi/smartmirror
-sudo npm start
+npm start

@@ -46,7 +46,6 @@ module.exports = function (buttonBar) {
 
   const initBtn = (gpio, btn) => {
     console.log("gpio -> btn", gpio, btn)
-    wpi.pinMode(gpio, wpi.INPUT)
     var tout = null
     wpi.wiringPiISR(gpio, wpi.INT_EDGE_BOTH, function (delta) {
       clearTimeout(tout)
@@ -60,12 +59,12 @@ module.exports = function (buttonBar) {
   }
 
   const init = () => {
-    wpi.setup('wpi')
-    initBtn(4, 0)
-    initBtn(3, 1)
-    initBtn(2, 2)
-    initBtn(0, 3)
-    initBtn(7, 4)
+    wpi.setup('sys')
+    initBtn(23, 0)
+    initBtn(22, 1)
+    initBtn(27, 2)
+    initBtn(17, 3)
+    initBtn(4, 4)
   }
 
   const close = () => {
