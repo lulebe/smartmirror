@@ -18,3 +18,4 @@
 1. jQuery (`require('jquery')`)
 2. doT.js (`require(doT)`)
 3. jsDom (`require('jsdom')`)
+4. responsivevoice (`responsiveVoice`)

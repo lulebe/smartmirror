@@ -6,7 +6,6 @@ module.exports = (function () {
 
   const moduleLoader = require('./module_api/loader')
   const speech = require('./speech/recognition')
-  const speak = require('./speech/speak')
   const screen = require('./screen')
 
 
@@ -67,7 +66,6 @@ module.exports = (function () {
       }
       speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
       screen.init(settings.sleepTimer, hideWindow, renderHomescreen)
-      speak.init(settings.watsonCredentials)
       loadModules()
       cb(null)
     })
@@ -86,7 +84,6 @@ module.exports = (function () {
         settings = newSettings
         speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
         screen.init(settings.sleepTimer, hideWindow, renderHomescreen)
-        speak.init(settings.watsonCredentials)
         if (reloadModules)
           loadModules()
       }

@@ -29,6 +29,10 @@
       <img src="res/btn-hide.png" id="btn4">
     </footer>
     <script>
+      require('./speech/responsivevoice')
+      setTimeout(function () {
+        responsiveVoice.setDefaultVoice("Deutsch Female")
+      }, 3000)
       require('./vendor/longpress.jquery.js')
       const renderer = require('./renderer.js')
       renderer.loadSettings(() => {})

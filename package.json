@@ -28,8 +28,6 @@
     "node-record-lpcm16": "0.2.0",
     "snowboy": "1.1.0",
     "stream": "0.0.2",
-    "wiring-pi": "^2.2.1",
-    "watson-speech": "^0.32.1",
-    "watson-developer-cloud": "^2.18.0"
+    "wiring-pi": "^2.2.1"
   }
 }
