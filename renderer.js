@@ -82,7 +82,7 @@ module.exports = (function () {
       else {
         cb(null)
         settings = newSettings
-        speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
+        //speech.init(settings.googleSpeechId, settings.googleSpeechKey, voiceOverlay, showVoiceOverlay)
         screen.init(settings.sleepTimer, hideWindow, renderHomescreen)
         if (reloadModules)
           loadModules()
