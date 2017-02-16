@@ -27,7 +27,8 @@ module.exports = (function () {
   const modules = []
   let settings = {
     name: "Spiegel",
-    language: "DE",
+    language: "EN",
+    location: { lat: 0, lng: 0 },
     sleepTimer: 300,
     autoHideFeed: false,
     modules: [],
