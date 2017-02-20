@@ -6,8 +6,8 @@ Computer with internet connection and up to date node(>= v6 LTS)/npm installed.
 
 ## Installation
 
-0. setup wifi (install networkmonitor, edit a file)
-1. setup gpio, in autostart "gpio export 4 in" for 4,17,27,23,22
+0. setup wifi (install networkmonitor, edit a file), setup sound
+1. setup gpio, in autostart "gpio export 4 in" for 4,17,27,23,22, setup autostart
 2. on mac `sh mac_install.sh`, on raspi/ubuntu/debian (needs apt-get) `sh raspi_install.sh`
 3. `npm start`
 

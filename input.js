@@ -51,9 +51,9 @@ module.exports = function (buttonBar) {
       clearTimeout(tout)
       tout = setTimeout(function () {
         if (wpi.digitalRead(gpio))
-          down(btn)
-        else
           up(btn)
+        else
+          down(btn)
       }, 30)
     })
   }
