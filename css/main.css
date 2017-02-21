@@ -219,16 +219,16 @@ body {
   animation: rotate-btn 1s infinite;
 }
 #btn-cues img:nth-child(1) {
-  left: 55px;
+  left: 50px;
 }
 #btn-cues img:nth-child(2) {
-  right: 315px;
+  right: 324px;
 }
 #btn-cues img:nth-child(3) {
-  right: 225px;
+  right: 232px;
 }
 #btn-cues img:nth-child(4) {
-  right: 135px;
+  right: 138px;
 }
 #btn-cues img:nth-child(5) {
   right: 40px;
