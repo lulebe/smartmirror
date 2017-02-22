@@ -22,6 +22,7 @@ module.exports = (function () {
   const itemWindow = $('#window')
   const voiceOverlay = $('#voice')
   const buttonBar = $('#btn-cues')
+  const loadingOverlay = $('#loading')
 
   //internal state
   const modules = []
@@ -48,6 +49,8 @@ module.exports = (function () {
 
 
   function loadSettings (cb) {
+    showHomescreen()
+    loadingOverlay.addClass('shown')
     fs.readFile(path.join(__dirname, 'data/settings.json'), (err, content) => {
       if (err) {
         loadModules()
@@ -93,6 +96,7 @@ module.exports = (function () {
 
   function loadModules () {
     moduleLoader(returns, modules, () => {
+      loadingOverlay.removeClass('shown')
       renderHomescreen()
     })
   }
@@ -137,7 +141,7 @@ module.exports = (function () {
     }
   }
 
-  function renderHomescreen () {
+  function showHomescreen () {
     settingsBarOpen = false
     settingsBar.removeClass('shown')
     settingsBar.html('')
@@ -185,6 +189,10 @@ module.exports = (function () {
     input.setPressListener(4, function () {
       feed.toggleClass('hidden')
     })
+  }
+
+  function renderHomescreen () {
+    showHomescreen()
     modules.forEach(mdl => {
       if (mdl.settings.providesStatus) {
         const domEl = $('<section style="float: ' + mdl.settings.status.position + ';"></section>')
