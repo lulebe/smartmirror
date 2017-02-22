@@ -8,6 +8,7 @@ module.exports = function (domNode, input, renderButtons, closeSettings) {
     <div id="settings-overview">
       <img id="wifi" src="./res/wifi.png" class="selected" />
       <img id="reboot" src="./res/restart.png" />
+      <img id="shutdown" src="./res/shutdown.png" />
     </div>
   `)
 
@@ -24,7 +25,7 @@ module.exports = function (domNode, input, renderButtons, closeSettings) {
   }
 
   input.setPressListener(1, () => { //down
-    if (selected == 1) return
+    if (selected == 2) return
     selected++
     reRender()
   })
@@ -41,6 +42,8 @@ module.exports = function (domNode, input, renderButtons, closeSettings) {
       case 1:
         exec('reboot')
         break;
+      case 2:
+        exec('sudo shutdown -h 0')
     }
   })
   input.setPressListener(4, null)
