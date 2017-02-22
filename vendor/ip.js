@@ -16,7 +16,7 @@ function internalIp(version) {
 	var options = type[version];
 	var ret = options.def;
 	var interfaces = os.networkInterfaces();
-
+	console.log(interfaces);
 	Object.keys(interfaces).forEach(function (el) {
 		interfaces[el].forEach(function (el2) {
 			if (!el2.internal && el2.family === options.family) {
@@ -24,7 +24,7 @@ function internalIp(version) {
 			}
 		});
 	});
-
+	console.log(ret);
 	return ret;
 }
 
