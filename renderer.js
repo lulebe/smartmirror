@@ -23,6 +23,7 @@ module.exports = (function () {
   const voiceOverlay = $('#voice')
   const buttonBar = $('#btn-cues')
   const loadingOverlay = $('#loading')
+  const ipDisplay = $('#ip')
 
   //internal state
   const modules = []
@@ -45,6 +46,8 @@ module.exports = (function () {
   //init input
   const input = require('./input')(buttonBar)
   input.setLongPressListener(0, toggleSettingsBar)
+
+  ipDisplay.text(require('./vendor/ip').v4())
 
 
 

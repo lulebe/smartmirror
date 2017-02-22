@@ -205,9 +205,17 @@ body {
   height: 88px;
   padding: 20px 0;
   width: 100%;
+  text-align: center;
 }
 #btn-cues > img {
   position: absolute;
+}
+#btn-cues > #ip {
+  height: 48px;
+  padding: 16px;
+  font-size: 16px;
+  font-family: monospace;
+  color: #ccc;
 }
 #btn-cues > img:hover {
   transform: scale(1.1)
@@ -221,16 +229,16 @@ body {
 #btn-cues img:nth-child(1) {
   left: 45px;
 }
-#btn-cues img:nth-child(2) {
+#btn-cues img:nth-child(3) {
   right: 330px;
 }
-#btn-cues img:nth-child(3) {
+#btn-cues img:nth-child(4) {
   right: 236px;
 }
-#btn-cues img:nth-child(4) {
+#btn-cues img:nth-child(5) {
   right: 140px;
 }
-#btn-cues img:nth-child(5) {
+#btn-cues img:nth-child(6) {
   right: 40px;
 }
 
