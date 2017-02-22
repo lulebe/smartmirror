@@ -209,13 +209,14 @@ body {
 }
 #btn-cues > img {
   position: absolute;
+  top: 20px;
 }
 #btn-cues > #ip {
   height: 48px;
   padding: 16px;
   font-size: 16px;
   font-family: monospace;
-  color: #ccc;
+  color: grey;
 }
 #btn-cues > img:hover {
   transform: scale(1.1)
