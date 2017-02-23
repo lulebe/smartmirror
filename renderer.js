@@ -12,7 +12,7 @@ module.exports = (function () {
   const returns = {
     loadSettings, getSettings, setSettings,
     renderButtons, showVoiceOverlay, openWindow,
-    renderHomescreen, hideWindow
+    renderHomescreen, hideWindow, getInput
   }
 
   //DOM nodes
@@ -225,6 +225,16 @@ module.exports = (function () {
   function openWindow () {
     itemWindow.html('')
     itemWindow.addClass('shown')
+    renderButtons({
+      one: './res/btn-none.png',
+      two: './res/btn-none.png',
+      three: './res/btn-none.png',
+      four: './res/btn-none.png'
+    })
+    input.setPressListener(1, null)
+    input.setPressListener(2, null)
+    input.setPressListener(3, null)
+    input.setPressListener(4, null)
     return itemWindow
   }
   function hideWindow () {
@@ -242,6 +252,10 @@ module.exports = (function () {
       input.enable(true)
       renderButtonsInternal(false)
     }
+  }
+
+  function getInput () {
+    return input
   }
 
   return returns

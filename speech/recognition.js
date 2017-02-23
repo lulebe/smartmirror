@@ -3,7 +3,7 @@ const Sonus = require('./sonus')
 const Speech = require('@google-cloud/speech')
 const screen = require('../screen')
 
-const hotwordGerman = [{ file: path.join(__dirname, 'sonus.pmdl'), hotword: 'sonus' }]
+const hotwordGerman = [{ file: path.join(__dirname, 'hey_spiegel.pmdl'), hotword: 'Hey Spiegel' }]
 //const hotwordEnglish = [{ file: path.join(__dirname, 'hey_mirror.pmdl'), hotword: 'Hey Mirror' }]
 let sonusGerman = null
 //let sonusEnglish = null
