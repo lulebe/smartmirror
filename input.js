@@ -7,9 +7,12 @@ try {
 
 const screen = require('./screen')
 
+const LONGPRESS_TIME = 1000
+
 module.exports = function (buttonBar) {
   var enabled = true
   var btn0, btn1, btn2, btn3, btn4
+  var longpressTimeouts = [null, null, null, null, null]
   const listeners = [
     {down: null, up: null, press: null, longPress: null, lastDown: null},
     {down: null, up: null, press: null, longPress: null, lastDown: null},
@@ -26,15 +29,20 @@ module.exports = function (buttonBar) {
     if (listeners[btn].down != null)
       listeners[btn].down()
     listeners[btn].lastDown = Date.now()
+    longpressTimeouts[btn] = setTimeout(() => {
+      buttonBar.children('#btn'+btn).addClass('long-active')
+    }, LONGPRESS_TIME)
   }
 
   const up = (btn) => {
     if (!enabled) return
-    buttonBar.children('#btn'+btn).removeClass('active')
+    if (longpressTimeouts[btn] != null)
+      clearTimeout(longpressTimeouts[btn])
+    buttonBar.children('#btn'+btn).removeClass('active long-active')
     const l = listeners[btn]
     if (l.up != null)
       l.up()
-    if (Date.now() - l.lastDown > 1000) {
+    if (Date.now() - l.lastDown > LONGPRESS_TIME) {
       if (l.longPress != null)
         l.longPress()
     } else {

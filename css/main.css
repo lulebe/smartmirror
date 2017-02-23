@@ -225,7 +225,10 @@ body {
   animation: rotate-btn 1s infinite;
 }
 #btn-cues > img.active {
-  animation: rotate-btn 1s infinite;
+  animation: scale-btn 1s infinite;
+}
+#btn-cues > img.long-active {
+  animation: rotate-btn 0.5s infinite;
 }
 #btn-cues img:nth-child(1) {
   left: 45px;
@@ -244,6 +247,17 @@ body {
 }
 
 
+@keyframes scale-btn {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
 @keyframes rotate-btn {
   0% {
     transform: rotate(-10deg);
