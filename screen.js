@@ -1,10 +1,19 @@
 const exec = require('child_process').exec
+const path = require('path')
 
 let screenTimeout = null
 let hideWindow = null
 let renderHomescreen = null
 let timeout = 300
 let isOn = true
+
+function watchUltrasonic () {
+  exec('python ' + path.join(__dirname, 'ultrasonic_once.py'), function (err, stdout, stderr) {
+    if (stdout === "1")
+      turnOn()
+    setTimeout(watchUltrasonic, 500)
+  })
+}
 
 function turnOff () {
   if (isOn) {
@@ -37,6 +46,7 @@ function init (t, hw, rh) {
   hideWindow = hw
   renderHomescreen = rh
   turnOn()
+  watchUltrasonic()
 }
 
 module.exports = { turnOff, turnOn, toggle, init }
